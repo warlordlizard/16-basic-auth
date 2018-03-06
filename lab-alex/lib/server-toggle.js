@@ -20,9 +20,9 @@ exports.serverOn = function(server, done) {
 exports.serverOff = function(server, done) {
   if (server.isRunning) {
     server.close( err => {
-      if (err) return done(err);
+      if (err) return done();
       server.isRunning = false;
-      mongoose.connection = false;
+      mongoose.connection.close();
       debug('server down!');
       done();
     });
