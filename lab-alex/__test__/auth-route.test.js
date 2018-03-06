@@ -85,8 +85,8 @@ describe('Auth Routes', function() {
           .end((err, res) => {
             expect(res.status).toEqual(401);
             done();
-          })
-      })
-    })
+          });
+      });
+    });
   });
 });
