@@ -11,7 +11,8 @@
   },
   "scripts": {
     "test": "DEBUG='pictogram*' jest",
-    "start": "DEBUG='pictogram*'  node server.js"
+    "start": "DEBUG='pictogram*'  node server.js",
+    "test2": "jest collection-route.test.js"
   },
   "keywords": [],
   "author": "",
