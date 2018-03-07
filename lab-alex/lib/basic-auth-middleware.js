@@ -1,7 +1,7 @@
 'use strict';
 
 const createError = require('http-errors');
-const debug = require('debug')('pictogram:dasic-auth-middleware');
+const debug = require('debug')('pictogram:basic-auth-middleware');
 
 module.exports = function(req, res, next) {
   debug('basic auth');

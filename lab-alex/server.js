@@ -10,6 +10,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 const authRouter = require('./route/auth-route.js');
+const collRouter = require('./route/collection-router.js');
 const errors = require('./lib/error-middleware.js');
 
 dotenv.load();
@@ -21,6 +22,7 @@ mongoose.connect(process.env.MONGODB_URI);
 app.use(cors());
 app.use(morgan('dev'));
 app.use(authRouter);
+app.use(collRouter);
 app.use(errors);
 
 const server = module.exports = app.listen(PORT, () => {
