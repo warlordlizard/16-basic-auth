@@ -10,7 +10,7 @@
     "testEnvironment": "node"
   },
   "scripts": {
-    "test": "DEBUG='pictogram*' jest",
+    "test": "DEBUG='pictogram*' jest -i --verbose",
     "start": "DEBUG='pictogram*'  node server.js",
     "test2": "jest collection-route.test.js"
   },
