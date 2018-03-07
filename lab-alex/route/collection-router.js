@@ -11,7 +11,7 @@ const bearerAuth = require('../lib/bearer-auth-middleware.js');
 const collRouter = module.exports = Router();
 
 collRouter.post('/api/collection', bearerAuth, jsonParser, function(req, res, next) {
-  debug('POST: api/collection');
+  debug('POST: /api/collection');
   if (!req.body.name) return next(createError(400, 'bad request'));
 
   req.body.userID = req.user._id;
@@ -22,7 +22,6 @@ collRouter.post('/api/collection', bearerAuth, jsonParser, function(req, res, ne
 
 collRouter.get('/api/collection/:collectionId', bearerAuth, function(req, res, next) {
   debug('GET: /api/collection/:collectionId');
-  if (!req.params.collectionId) return next(createError(404, 'not found'));
 
   Collection.findById(req.params.collectionId)
     .then( collection => res.json(collection))
@@ -36,19 +35,13 @@ collRouter.delete('/api/collection/:collectionId', bearerAuth, function (req, re
   Collection.findByIdAndRemove(req.params.collectionId, bearerAuth)
     .then( () => res.send(204))
     .catch(next);
-  
 });
 
 collRouter.put('/api/collection/:collectionId', bearerAuth, jsonParser, function (req, res, next) {
   debug('PUT: api/collection/:collectionId');
-  if (!req.params.collectionId) return next(createError(400, 'bad request'));
+  if (!req.body.name) return next(createError(400, 'bad request'));
 
   Collection.findByIdAndUpdate(req.params.collectionId, req.body, { new:true})
     .then(collection => res.json(collection))
-    .catch(err => {
-      if (err.name === 'ValidationError') return next(err);
-      next(createError(404, err.message));
-    });
+    .catch(err => next(err));
 });
-
-
