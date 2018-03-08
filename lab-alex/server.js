@@ -11,6 +11,7 @@ const cors = require('cors');
 
 const authRouter = require('./route/auth-route.js');
 const collRouter = require('./route/collection-router.js');
+const imgRouter = require('./route/image-route.js');
 const errors = require('./lib/error-middleware.js');
 
 dotenv.load();
@@ -23,6 +24,7 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(authRouter);
 app.use(collRouter);
+app.use(imgRouter);
 app.use(errors);
 
 const server = module.exports = app.listen(PORT, () => {
